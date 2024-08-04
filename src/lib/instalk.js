@@ -6,7 +6,8 @@ export const extractDataInstagram = async (username) => {
     try {
         const { COOKIE_INSTAGRAM } = process.env;
         if (!COOKIE_INSTAGRAM) throw new Error("Empty cookie instagram!");
-        const IGAPI = new igApi(rand((COOKIE_INSTAGRAM || '').split('|')));
+        const cookie = rand((COOKIE_INSTAGRAM || '').split('|'));
+        const IGAPI = new igApi(cookie);
         const result = await IGAPI.fetchUserV2(username);
         const resultPost = await IGAPI.fetchUserPostsV2(username);
         return {
