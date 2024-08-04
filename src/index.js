@@ -41,6 +41,7 @@ app.post('/roast-ig/:user', async (req, res) => {
         const response = result.response;
         res.send(response.text());
     } catch(err) {
+        console.error(err);
         if (err instanceof GoogleGenerativeAIResponseError) {
             return res.status(500).send("Internal server error at AI Models");
         }
@@ -53,7 +54,6 @@ app.post('/roast-ig/:user', async (req, res) => {
                 return res.status(500).send("extract account error");
             }
         }
-        console.log(err)
         res.status(500).send("Internal Server Error");
     }
 });
