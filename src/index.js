@@ -22,6 +22,7 @@ app.post('/roast-ig/:user', async (req, res) => {
         let { user } = req.params;
         if (!user) return res.status(400).send("Please input your username!");
         let dataExtract = await extractDataInstagram(user);
+        if (!dataExtract) return res.status(400).send("Data User Instagram gagal dimuat")
         const resultAI = await roastAI(user, dataExtract);
         res.send(resultAI);
     } catch(err) {
