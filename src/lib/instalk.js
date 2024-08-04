@@ -1,6 +1,6 @@
 import { igApi } from 'insta-fetcher';
 
-const rand = (array) => Math.floor(Math.random() * array.length);
+const rand = (array) => array[Math.floor(Math.random() * array.length)];
 
 export const extractDataInstagram = async (username) => {
     try {

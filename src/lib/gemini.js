@@ -2,7 +2,7 @@ import { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } from '@google/ge
 
 
 const { GEMINI_API_KEY } = process.env;
-const rand = (array) => Math.floor(Math.random() * array.length);
+const rand = (array) => array[Math.floor(Math.random() * array.length)];
 
 export async function roastAI(username, dataExtract) {
     const apikey = rand((GEMINI_API_KEY || "").split('|'));
