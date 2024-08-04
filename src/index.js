@@ -9,7 +9,7 @@ import { GoogleGenerativeAIResponseError } from '@google/generative-ai';
 
 const app = express();
 
-app.use(cors())
+app.use(cors());
 
 app.use(express.static(path.join(process.cwd(), 'public')));
 

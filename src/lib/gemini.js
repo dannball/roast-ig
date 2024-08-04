@@ -1,8 +1,12 @@
 import { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } from '@google/generative-ai';
 
 
+const { GEMINI_API_KEY } = process.env;
+const rand = (array) => Math.floor(Math.random() * array.length);
+
 export async function roastAI(username, dataExtract) {
-    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY ?? '');
+    const apikey = rand((GEMINI_API_KEY || "").split('|'));
+    const genAI = new GoogleGenerativeAI(apikey);
     let prompt = `berikan roasting singkat dengan kejam, menyindir, sarkas, serta menyakitkan dalam bahasa gaul untuk profile instagram berikut : ${username}. Berikut detailnya: "${JSON.stringify(dataExtract)}"`;
     const safetySettings = [
         {
