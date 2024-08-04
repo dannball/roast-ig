@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="eng">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roast-Instagram</title>
+  <link rel="stylesheet" href="/index.css" />
+</head>
+
+<body>
+  <div class="container">
+
+    <h2>Roasting Instagram 😎🤘</h2>
+
+    <form id="post-form">
+      <label for="username">Username Instagram</label><br>
+      <input name="username" type="text" id="username" autofocus="on" name="username"><br></br>
+      <button type="submit">Roasting</button>
+    </form>
+
+    <div class="box-result" type="text">
+      Silahkan ketik username Instagram yang ingin diroasting!
+    </div>
+
+    <footer>
+      <p>&copy; 2024 Roast-Instagram. Developed with 🎶 by <a href="https://github.com/dannball">Ramadan🍻Iqbal</a></p>
+    </footer>
+  </div>
+
+  <script type="text/javascript">
+    window.onload = async () => {
+      const postForm = document.getElementById("post-form");
+      const boxResult = document.querySelector('.box-result');
+      const buttonSubmit = document.querySelector('button[type="submit"]');
+      var username = document.getElementById("username");
+
+      postForm.addEventListener('submit', async (event) => {
+        event.preventDefault(); // menghalau reload
+        buttonSubmit.innerHTML = 'Loading...';
+        await fetch(`/roast-ig/${username.value}`, {
+            method: 'POST'
+          })
+          .then((res) => res.text())
+          .then(data => {
+            boxResult.innerText = data;
+          })
+          .catch(err => {
+            boxResult.innerText = `Request failed with unknown responsed!`;
+          })
+        buttonSubmit.innerHTML = 'Roasting';
+      })
+    }
+  </script>
+</body>
+
+</html>
